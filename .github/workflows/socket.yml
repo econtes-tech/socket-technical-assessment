@@ -1,0 +1,17 @@
+name: Socket Security Scan
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  socket-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Socket CLI Action
+        uses: socketsecurity/cli-action@v2
+        env:
+          SOCKET_SECURITY_API_KEY: ${{ secrets.SOCKET_SECURITY_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
